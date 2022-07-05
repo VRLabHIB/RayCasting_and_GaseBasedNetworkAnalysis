@@ -13,24 +13,26 @@ def create_and_save_graphs(df_mat_lst,name_lst, save_path, save=True):
 
     os.chdir(save_path)
 
-    graph_list = list()
+    graph_lst = list()
     for file in range(len(df_mat_lst)):
         df_mat = df_mat_lst[file]
         G = nx.from_pandas_edgelist(df_mat, source='Source', target='Target', edge_attr=['Weight'],
                                     create_using=nx.MultiDiGraph())
-        graph_list.append(G)
+        graph_lst.append(G)
 
         if save:
             name = name_lst[file]
             with open("{}.p".format(name), 'wb') as f:
                 pickle.dump(G, f)
 
-    return graph_list
+    return graph_lst
 
 
 if __name__ == '__main__':
     import fl1_preprocessing as pp
     import fl2_transition as tr
+    import fl3_calculate_graph_features as gf
+
 
     # Load and preprocess the datasets
     # Renaming of the dataset variables and additional prepocessing steps must be implemented directly in the script
@@ -54,4 +56,20 @@ if __name__ == '__main__':
                                                          min_weight=1, normalize=True)
 
     save_path = "/your_graph_save_path/"
-    create_and_save_graphs(df_mat_lst, name_lst, save_path, save=True)
+    graph_lst = create_and_save_graphs(df_mat_lst, name_lst, save_path, save=True)
+
+    # ###### Calculate graph structural variables for individual graphs for each participant ######
+    # Depending of the datasets investigated the OOIs and the foci could be very different.
+    # Therefore, we just try to give an example of our VR classroom study.
+
+    stud_lst = ['S11', 'S12', 'S13', 'S14', 'S15', 'S16', 'S17', 'S22', 'S23', 'S24', 'S27', 'S28', 'S32', 'S33',
+                'S34', 'S35', 'S36', 'S37', 'S38', 'S42', 'S43', 'S44', 'S47', 'S48']
+    teacher_lst = ['teacher']
+    screen_lst = ['screen']
+
+    #All dataset can be merged later on using the pandas merge function on ID
+    centr_student = gf.degree_centrality_for_groups(graph_lst, name_lst, 'students', stud_lst)
+    centr_teacher = gf.degree_centrality_for_groups(graph_lst, name_lst, 'teacher', teacher_lst)
+    cenrt_screen = gf.degree_centrality_for_groups(graph_lst, name_lst, 'screen', screen_lst)
+
+
