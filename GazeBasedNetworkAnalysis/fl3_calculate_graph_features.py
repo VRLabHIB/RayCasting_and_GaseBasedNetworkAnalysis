@@ -17,13 +17,15 @@ def get_participant_id(name):
 def degree_centrality_for_groups(graph_lst, name_lst, group_name, names_of_group_members):
     """
     Calculates the degree centrality for each individual group member
-    and sums up all centrality values for all members of the group.
+    and sums up all centrality values for all members of the group,
+    e.g. how often do participants transition from and towards a group of objects.
+    The function calculates this sum degree centralities for a list of graphs, e.g. a list of participants.
 
     :param graph_lst: list that contains the graph objects
     :param name_lst: list of strings with the names of the graphs (might contain the participant ID)
     :param group_name: string of the name of the group
     :param names_of_group_members: list of strings of all nodes which the degree centrality should be summed up
-    :return: pandas dataframe which consists of an ID variable and the Degree Centrality values for each participant
+    :return: pandas dataframe which consists of an ID variable and the degree centrality values for each participant
     """
 
     deg_centrality_lst = list()
@@ -124,3 +126,7 @@ def cut_size():
 
 def uniformity():
     return None
+
+if __name__ == '__main__':
+    #Load a graph and test
+    None

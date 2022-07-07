@@ -6,7 +6,7 @@ Created on Mon Jul  5 09:10:51 2021
 """
 
 
-def create_and_save_graphs(df_mat_lst,name_lst, save_path, save=True):
+def create_and_save_graphs(df_mat_lst, name_lst, save_path, save=True):
     import networkx as nx
     import pickle
     import os
@@ -29,16 +29,16 @@ def create_and_save_graphs(df_mat_lst,name_lst, save_path, save=True):
 
 
 if __name__ == '__main__':
-    import fl1_preprocessing as pp
-    import fl2_transition as tr
-    import fl3_calculate_graph_features as gf
-
+    # file function libraries
+    import fl1_preprocessing as fl1
+    import fl2_transition as fl2
+    import fl3_calculate_graph_features as fl3
 
     # Load and preprocess the datasets
     # Renaming of the dataset variables and additional prepocessing steps must be implemented directly in the script
     filepath = "/your_file_path/"
-    name_lst, dataframes = pp.load_and_preprocess_datasets(filepath=filepath, start_t=0, end_t=850,
-                                                           filetag="object*.csv")
+    name_lst, dataframes = fl1.load_and_preprocess_datasets(filepath=filepath, start_t=0, end_t=850,
+                                                            filetag="object*.csv")
 
     # Create a transition dataset, that contains all transitions between our OOIs as well as the transition starting
     # point and the duration of the transition. Define your list of objects of interest that should be considered when
@@ -48,11 +48,11 @@ if __name__ == '__main__':
 
     # Customization of the get_participant_id function is necessary depending on the datasets
     save_path = "/your_file_save_path"
-    df_transition_lst = tr.create_transition_datasets(save_path, dataframes, data_lst, ooi_lst, save=True)
+    df_transition_lst = fl2.create_transition_datasets(save_path, dataframes, data_lst, ooi_lst, save=True)
 
     # with the transition dataframes we can now compute the adjacency matrices. Note that we also store them in a
     # pandas dataframe format for further graph building
-    df_mat_lst = tr.build_adjacency_matrices_as_datasets(df_transition_lst, min_trans_dur=0, max_trans_dur=10,
+    df_mat_lst = fl2.build_adjacency_matrices_as_datasets(df_transition_lst, min_trans_dur=0, max_trans_dur=10,
                                                          min_weight=1, normalize=True)
 
     save_path = "/your_graph_save_path/"
@@ -67,9 +67,7 @@ if __name__ == '__main__':
     teacher_lst = ['teacher']
     screen_lst = ['screen']
 
-    #All dataset can be merged later on using the pandas merge function on ID
-    centr_student = gf.degree_centrality_for_groups(graph_lst, name_lst, 'students', stud_lst)
-    centr_teacher = gf.degree_centrality_for_groups(graph_lst, name_lst, 'teacher', teacher_lst)
-    cenrt_screen = gf.degree_centrality_for_groups(graph_lst, name_lst, 'screen', screen_lst)
-
-
+    # All dataset can be merged later on using the pandas merge function on ID
+    centr_student = fl3.degree_centrality_for_groups(graph_lst, name_lst, 'students', stud_lst)
+    centr_teacher = fl3.degree_centrality_for_groups(graph_lst, name_lst, 'teacher', teacher_lst)
+    cenrt_screen = fl3.degree_centrality_for_groups(graph_lst, name_lst, 'screen', screen_lst)
