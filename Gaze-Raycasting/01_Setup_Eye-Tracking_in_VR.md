@@ -1,4 +1,5 @@
-## Installation and Integration of SRanipal Eye Tracker
+## I.	Enable eye-tracking in the Unreal Engine using the SRanipal SDK 
+**Installation and Integration of SRanipal Eye Tracker**
 
 - Setup Steam VR
 
@@ -12,7 +13,7 @@
 - Download and Install VIVE_SRanipalInstaller_1.3.2.0.msi (version might be different)
 
 
-## Get started with the Unreal Engine
+**Get started with the Unreal Engine**
 
 - Install the Epic Game Launcher and register
 - Go to library and Install Unreal Engine (maybe some troubles occur here, if so see: https://answers.unrealengine.com/questions/1035057/view.html)
@@ -46,3 +47,16 @@ This file can be found in the Project (lets assume our new VR project is called 
 Open file and add  "SRanipal", "SRanipalEye" to PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "SRanipal", "SRanipalEye" }).
 
 Save and compile the project again. 
+
+## II.	Create an eye-tracking Actor to provide and collect the eye-data: 
+
+- Create a C++ Actor in your project called EyeTracker. Tow C++ files will be created in the Source folder of your Unreal project. 
+- Copy the code from the two given files (EyeTracker.h & EyeTracker.cpp) into the respective newly created files.
+- Modify the data collection pipeline in the script as you want  
+- Go back to Unreal an create an "BP_EyeTracker" Blueprint from the C++ Actors.
+- In the Blueprint create the following variables and functions to enable Gaze-Raycasting
+
+## III.	Transform local gaze directions into global gaze directions:
+
+![grafik](https://user-images.githubusercontent.com/74495398/180719126-df7bcee5-2758-4797-924b-001699682a62.png)
+
