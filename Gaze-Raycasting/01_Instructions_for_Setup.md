@@ -59,7 +59,7 @@ Save and compile the project again.
 
 - Get the forward vector of the player
 
-<img src="img/GetForwardVector.png" height="100">
+<img src="img/GetForwardVector.png" height="200">
 
 - Calculate pitch and yaw form the local gaze vector
 
@@ -69,7 +69,7 @@ img
 
 Make sure that the right coordinates are used, because the Tobii Eye tracker and the Unreal Engine work with different coordinate systems and different rotations. 
 
-<img src="img/HTC_coordinates.png" height="150"> <img src="img/UE_coordinates.jpg" height="150">
+<img src="img/HTC_coordinates.png" height="200"> <img src="img/UE_coordinates.jpg" height="200">
 
 ## IV.	Project the global gaze vector into the environment by using the raycasting function: 
 
