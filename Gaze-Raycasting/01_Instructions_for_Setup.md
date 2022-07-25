@@ -28,18 +28,14 @@
 	- Copy Plugin Folder into your Unreal Project folder. 
 	- Restart the editor and enable SRanipal ind Settings->Plugins
 	- Under Project Settings -> Plugins -> SRanipal you can enable eye by default or put this Code into the BP 
-	
 
-![Pasted image 20220322131247](https://user-images.githubusercontent.com/74495398/177186048-10f7c27c-6b6f-4682-ac30-087cbccaef0d.png)
-
+<img src="img/Start_EyeTracker.png" width="800">
 
 Unreal Setup needed for VR projects:
 https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/XRDevelopment/VR/VRPlatforms/SteamVR/QuickStart/
 
+<img src="img/Unreal_Settings.png" width="800">
 
-<img src="img/Unreal_Settings.png" width="300">
-
-Create C++ Actor calle EyeTracker. copy paste in the C++ script in EyeTracker.h and EyeTracker.cpp
 
 To be able to get access to the SDK Sranipal Eye Data we need to add something in the Environment build data file.
 This file can be found in the Project (lets assume our new VR project is called VRTest): VRtest/Source/VRtest/Vrtest.Build.cs
