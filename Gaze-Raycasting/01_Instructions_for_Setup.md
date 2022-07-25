@@ -37,8 +37,7 @@ Unreal Setup needed for VR projects:
 https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/XRDevelopment/VR/VRPlatforms/SteamVR/QuickStart/
 
 
-![Pasted image 20220516151029 | Width 250](https://user-images.githubusercontent.com/74495398/177186180-2b1d50d0-2413-4b7b-919d-cda08516e7ee.png)
-
+<img src="img/Unreal_Settings.png" width="300">
 
 Create C++ Actor calle EyeTracker. copy paste in the C++ script in EyeTracker.h and EyeTracker.cpp
 
