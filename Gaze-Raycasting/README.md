@@ -61,11 +61,23 @@ Save and compile the project again.
 
 <img src="img/GetForwardVector.png" height="200">
 
-- Calculate pitch and yaw form the local gaze vector
+- Calculate pitch and yaw from the local gaze vector
 
-img
+<img src="img/Pitch_and_Yaw.png" height="400">
 
-** Remarks on Tobii Eye-Tracking and Unreal Coordinate System**
+- Gaze is the variable created in the c++ script, which contains the local gaze vector tracked by the Tobii Eye Tracker (vector is updated by the script every tick).
+
+- We created to nwe fuctions in the script to calculate pitch and yaw. The mathematical formula can be looked up in the paper. 
+
+<img src="img/Get_Pitch_Rotation.png" height="300">
+
+Get Pitch Rotation.
+
+<img src="img/Get_Yaw_Rotation.png" height="300">
+
+Get Yaw Rotation.
+
+**Remarks on Tobii Eye-Tracking and Unreal Coordinate System**
 
 Make sure that the right coordinates are used, because the Tobii Eye tracker and the Unreal Engine work with different coordinate systems and different rotations. 
 
@@ -82,6 +94,8 @@ Forward vector would be f_=[1,0,0]
 *Pictures from:* [https://vr.tobii.com/sdk/media/learn/technical-information/world-tracking-space.png](https://vr.tobii.com/sdk/media/learn/technical-information/world-tracking-space.png) (left), [http://www.aclockworkberry.com/world-coordinate-systems-in-3ds-max-unity-and-unreal-engine/](http://www.aclockworkberry.com/world-coordinate-systems-in-3ds-max-unity-and-unreal-engine/) (right)
 
 ## IV.	Project the global gaze vector into the environment by using the raycasting function: 
+
+
 
 ## V.	Collect gaze target information in the eye-tracking Actor and save in datafile: 
 
