@@ -15,10 +15,10 @@
 #include "Misc/DateTime.h"
 #include "EyeTracker.generated.h"
 
-//Hinweis damit das Skript funktioniert!!!!!!!!!!!!
-//TestEnv.Build.cs öffnen
-//hier bei PublicDependencyModuleNames.AddRange(new string[]{ "Core", "CoreUObject", "Engine", "InputCore","SRanipal","SRanipalEye" });
-//die Pakete "SRanipal", "SRanipalEye" einfügen
+//Important to make the script running!
+//open your build file (e.g. TestEnv.Build.cs) 
+//Add packages into PublicDependencyModuleNames.AddRange(new string[]{ "Core", "CoreUObject", "Engine", "InputCore","SRanipal","SRanipalEye" });
+//The folowwing packages are needed: "SRanipal", "SRanipalEye"
 
 using namespace std;
 
