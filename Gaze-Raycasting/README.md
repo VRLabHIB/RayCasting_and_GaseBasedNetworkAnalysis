@@ -55,7 +55,7 @@ Save and compile the project again.
 
 - Align EyeTracker Actor with Pawn/Player, such that head orientation and head location are the same
 
-<img src="img/Align_Head_Orientation_and_Rotation.png" height="300">
+<img src="img/Align_Head_Orientation_and_Rotation.png" height="250">
 
 - Get the forward vector of the player
 
