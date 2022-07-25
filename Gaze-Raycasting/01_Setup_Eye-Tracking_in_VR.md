@@ -39,8 +39,6 @@ https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/XRDevelopment/VR/VR
 
 ![Pasted image 20220516151029 | Width 250](https://user-images.githubusercontent.com/74495398/177186180-2b1d50d0-2413-4b7b-919d-cda08516e7ee.png)
 
-![Unreal_Settings](https://user-images.githubusercontent.com/74495398/180719976-5b61701a-b926-48d0-bc5b-c28e49dd738b.png =100x20)
-
 
 Create C++ Actor calle EyeTracker. copy paste in the C++ script in EyeTracker.h and EyeTracker.cpp
 
