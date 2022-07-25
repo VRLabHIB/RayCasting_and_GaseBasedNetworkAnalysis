@@ -65,11 +65,21 @@ Save and compile the project again.
 
 img
 
-*Tips and Tricks:*
+** Remarks on Tobii Eye-Tracking and Unreal Coordinate System**
 
 Make sure that the right coordinates are used, because the Tobii Eye tracker and the Unreal Engine work with different coordinate systems and different rotations. 
 
+*Tobii SDK Coordinate System*
+
+Forward vector would be f1=[0,0,1]
+
+*Unreal Enigne Coordinate System*
+
+Forward vector would be f_=[1,0,0]
+
 <img src="img/HTC_coordinates.png" height="200"> <img src="img/UE_coordinates.jpg" height="200">
+
+*Pictures from:* [https://vr.tobii.com/sdk/media/learn/technical-information/world-tracking-space.png](https://vr.tobii.com/sdk/media/learn/technical-information/world-tracking-space.png) (left), [http://www.aclockworkberry.com/world-coordinate-systems-in-3ds-max-unity-and-unreal-engine/](http://www.aclockworkberry.com/world-coordinate-systems-in-3ds-max-unity-and-unreal-engine/) (right)
 
 ## IV.	Project the global gaze vector into the environment by using the raycasting function: 
 
