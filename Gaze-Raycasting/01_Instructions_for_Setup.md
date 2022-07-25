@@ -29,7 +29,7 @@
 	- Restart the editor and enable SRanipal ind Settings->Plugins
 	- Under Project Settings -> Plugins -> SRanipal you can enable eye by default or put this Code into the BP 
 
-<img src="img/Start_EyeTracker.png" width="800">
+<img src="img/Start_EyeTracker.png" width="400">
 
 Unreal Setup needed for VR projects:
 https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/XRDevelopment/VR/VRPlatforms/SteamVR/QuickStart/
@@ -53,5 +53,34 @@ Save and compile the project again.
 
 ## III.	Transform local gaze directions into global gaze directions:
 
-![grafik](https://user-images.githubusercontent.com/74495398/180719126-df7bcee5-2758-4797-924b-001699682a62.png)
+- Align EyeTracker Actor with Pawn/Player, such that head orientation and head location are the same
+
+<img src="img/Align_Head_Orientation_and_Rotation.png" height="300">
+
+- Get the forward vector of the player
+
+<img src="img/GetForwardVector.png" height="100">
+
+- Calculate pitch and yaw form the local gaze vector
+
+img
+
+*Tips and Tricks:*
+
+Make sure that the right coordinates are used, because the Tobii Eye tracker and the Unreal Engine work with different coordinate systems and different rotations. 
+
+<img src="img/HTC_coordinates.png" height="150"> <img src="img/UE_coordinates.jpg" height="150">
+
+## IV.	Project the global gaze vector into the environment by using the raycasting function: 
+
+## V.	Collect gaze target information in the eye-tracking Actor and save in datafile: 
+
+
+
+
+
+
+
+
+
 
