@@ -1,6 +1,0 @@
-﻿  Gaze-Raycasting.cpp
-C:\Users\Stark\Documents\Promotion\Eye_Tracking_in_VR\EyeTrackinginVR--Repo\Gaze-Raycasting\Gaze-Raycasting.h(21,13): warning C4244: "Initialisierung": Konvertierung von "double" in "float", möglicher Datenverlust
-C:\Users\Stark\Documents\Promotion\Eye_Tracking_in_VR\EyeTrackinginVR--Repo\Gaze-Raycasting\Gaze-Raycasting.cpp(10,12): warning C4244: "Initialisierung": Konvertierung von "double" in "float", möglicher Datenverlust
-C:\Users\Stark\Documents\Promotion\Eye_Tracking_in_VR\EyeTrackinginVR--Repo\Gaze-Raycasting\Gaze-Raycasting.cpp(13,4): error C2065: "__m256": nichtdeklarierter Bezeichner
-C:\Users\Stark\Documents\Promotion\Eye_Tracking_in_VR\EyeTrackinginVR--Repo\Gaze-Raycasting\Gaze-Raycasting.cpp(13,19): error C3861: "_mm256_dp_ps": Bezeichner wurde nicht gefunden.
-C:\Users\Stark\Documents\Promotion\Eye_Tracking_in_VR\EyeTrackinginVR--Repo\Gaze-Raycasting\Gaze-Raycasting.cpp(16,48): error C2296: "/": Ungültig, da der linke Operand vom Typ "float [8]" ist
