@@ -13,10 +13,6 @@
 
 using namespace std;
 
-//C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\EyeTracker\Public
-//C : \Users\Stark\Documents\VR_Projects\Eye - Tracking_Test_Env\TestEnv\Source\TestEnv
-// Sets default values
-
 
 AEyeTracker::AEyeTracker()
 {
@@ -215,7 +211,6 @@ void AEyeTracker::Tick(float DeltaTime)
 	//Set filename and saving path
 	filename = TCHAR_TO_ANSI(*Filename);
 	save_path = TCHAR_TO_ANSI(*Save_Path);
-	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, FString::Printf(TEXT("Filename: %s"), filename.c_str()));
 
 	//Save CSV file in every tick (this avoids loosing the dataframe in case of a crash of the session)
 	std::ofstream file(save_path + filename + ".csv");
