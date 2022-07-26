@@ -7,7 +7,7 @@
 - Inside the Steam Client install SteamVR
 
 - Setup SRanipal
-- Information for Sranipal Eye-Tracking is given by VIVE
+- Information for SRanipal Eye-Tracking is given by VIVE
 	- https://developer.vive.com/resources/vive-sense/sdk/vive-eye-and-facial-tracking-sdk/
 
 - Download and Install VIVE_SRanipalInstaller_1.3.2.0.msi (version might be different)
@@ -17,16 +17,16 @@
 
 - Install the Epic Game Launcher and register
 - Go to library and Install Unreal Engine (maybe some troubles occur here, if so see: https://answers.unrealengine.com/questions/1035057/view.html)
-- We used the Unreal Engine 4, Version 4.23.1 (individual costumisations are maybe necessary with another version) #Try Other Versions
+- We used the Unreal Engine 4, Version 4.23.1 (individual customizations  are maybe necessary with another version) #Try Other Versions
 - Start Unreal Engine and setup a new Project
 
 - Install the SDK for Eye-Tracking
 - Download SDK-v1.3.3.0.zip from https://hub.vive.com/en-US/download (version might be different)
-- unpack SDK in prefered folder
+- unpack SDK in preferred  folder
 - under C:\...\SDK\03_Unreal\Document\Eye\ you find a documentation to setup Eye-Tracking in Unreal ('Getting Started with SRanipal in Unreal Eye-v1.3.3.0.pdf')
 - Quick steps: 
 	- Copy Plugin Folder into your Unreal Project folder. 
-	- Restart the editor and enable SRanipal ind Settings->Plugins
+	- Restart the editor and enable SRanipal in Settings->Plugins
 	- Under Project Settings -> Plugins -> SRanipal you can enable eye by default or put this Code into the BP 
 
 <img src="img/Start_EyeTracker.png" width="400">
@@ -37,7 +37,7 @@ https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/XRDevelopment/VR/VR
 <img src="img/Unreal_Settings.png" width="800">
 
 
-To be able to get access to the SDK Sranipal Eye Data we need to add something in the Environment build data file.
+To be able to get access to the SDK SRanipal Eye Data we need to add something in the Environment build data file.
 This file can be found in the Project (lets assume our new VR project is called VRTest): VRtest/Source/VRtest/Vrtest.Build.cs
 Open file and add  "SRanipal", "SRanipalEye" to PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "SRanipal", "SRanipalEye" }).
 
@@ -57,9 +57,6 @@ Save and compile the project again.
 
 <img src="img/Align_Head_Orientation_and_Rotation.png" height="250">
 
-- Get the forward vector of the player
-
-<img src="img/GetForwardVector.png" height="200">
 
 - Calculate pitch and yaw from the local gaze vector
 
@@ -67,7 +64,7 @@ Save and compile the project again.
 
 - Gaze is the variable created in the c++ script, which contains the local gaze vector tracked by the Tobii Eye Tracker (vector is updated by the script every tick).
 
-- We created to nwe fuctions in the script to calculate pitch and yaw. The mathematical formula can be looked up in the paper. 
+- We created two new functions in the script to calculate pitch and yaw. The mathematical formula can be looked up in the paper. 
 
 <img src="img/Get_Pitch_Rotation.png" height="300">
 
@@ -95,11 +92,23 @@ Forward vector would be f_=[1,0,0]
 
 ## IV.	Project the global gaze vector into the environment by using the raycasting function: 
 
+- Use the previously defined Player Rotation (See III.)
 
+- Get the forward Vector of the player
+
+- Rotate this vector according to the calculated yaw and pitch. 
+
+- Use LineTraceForObjects of the Kismet System Library: Start point of the ray is the previously defined player location (see III.) and the end point the landing position of the lengthened global gaze vector (starting at player position)
+
+- Break the Output (Hit Result) to selectively collect certain variables.  
+
+<img src="img/RayCasting.png" height="400"> 
 
 ## V.	Collect gaze target information in the eye-tracking Actor and save in datafile: 
 
+Save all raycasting information by writing the pre-defined variables from the c++ files (e.g. Set Ray Hit Actor)
 
+<img src="img/SaveVariables.png" height="400"> 
 
 
 
