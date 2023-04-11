@@ -1,5 +1,4 @@
 import numpy as np
-
 import pandas as pd
 
 
@@ -9,6 +8,13 @@ def split(word):
 
 
 def get_participant_id(name):
+    """
+    Args:
+    - name(str): The file name string in the format specified in the sample data.
+
+    Returns:
+    - ID(str): The participant ID string.
+    """
     s = split(name)
     ID = s[8] + s[9] + s[10]
     return ID
