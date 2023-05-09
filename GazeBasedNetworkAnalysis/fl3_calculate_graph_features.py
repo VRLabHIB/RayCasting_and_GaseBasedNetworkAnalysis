@@ -14,9 +14,16 @@ def get_participant_id(name):
     ID = s[0] + s[1] + s[2]
     return ID
 
-
 ### Graph feature functions
 def degree_centrality_for_groups(graph_lst, name_lst, group_name, names_of_group_members):
+    '''
+
+    :param graph_lst:
+    :param name_lst:
+    :param group_name:
+    :param names_of_group_members:
+    :return:
+    '''
 
     deg_centrality_lst = list()
 
