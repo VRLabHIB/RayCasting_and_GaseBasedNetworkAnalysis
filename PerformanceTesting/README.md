@@ -24,6 +24,7 @@ Parameters for the data are:
 
 - Number of OOIs (result in the number of nodes in the network) (N nodes=4, 10, 25, 50)
   - X unique OOIs would mean that there existed X unique objects in the environment to be tracked
+  - Datasets are created that each OOI has a 200ms gaze duration. This reflects the average gaze duration on OOIs.
 
 ## General Tips
 - Remove unnecessary variables (to generate transition matrices only 2 variables are necessary {time, object})
