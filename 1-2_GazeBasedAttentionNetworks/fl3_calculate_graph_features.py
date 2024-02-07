@@ -109,13 +109,13 @@ def uniformity(graph_lst, name_lst):
     df = pd.DataFrame({'ID': ID_lst, 'ChiUniformity':chi_lst})
     return df
     
-def cut_size(graph_lst, name_lst):
+def cut_size(graph_lst, name_lst, stud_lst):
     cut_norm_lst = list()
     ID_lst = list()
 
     for graph in range(len(graph_lst)):
         G = graph_lst[graph]
-        s = split(data_lst[graph])
+        s = split(name_lst[graph])
         ID = s[0] + s[1] + s[2]
 
         # Devide nodes into students and teacher/screen
@@ -135,6 +135,11 @@ def cut_size(graph_lst, name_lst):
     
 def clique_features(graph_lst, name_lst, group_name, names_of_group_members,
                     number_of_cliques=True, avg_clique_size=True):
+    ID_lst = list()
+    ratio_cl_boys_lst = list()
+    avg_clique_size_stud_lst = list()
+    n_cl_lst_not = list()
+
     for graph in range(len(graph_lst)):
         G = graph_lst[graph]
         name = name_lst[graph]

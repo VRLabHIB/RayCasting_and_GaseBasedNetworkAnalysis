@@ -1,4 +1,4 @@
-## I.	Enable eye-tracking in the Unreal Engine using the SRanipal SDK 
+## I.	Enabling eye tracking in the Unreal Engine using the SRanipal SDK 
 **Installation and Integration of SRanipal Eye Tracker**
 
 - Setup Steam VR
@@ -43,7 +43,7 @@ Open file and add  "SRanipal", "SRanipalEye" to PublicDependencyModuleNames.AddR
 
 Save and compile the project again. 
 
-## II.	Create an eye-tracking Actor to provide and collect the eye-data: 
+## II.	Creating an “eye-tracking” Actor to collect the local gaze vectors:
 
 - Create a C++ Actor in your project called EyeTracker. Tow C++ files will be created in the Source folder of your Unreal project. 
 - Copy the code from the two given files (EyeTracker.h & EyeTracker.cpp) into the respective newly created files.
@@ -51,7 +51,7 @@ Save and compile the project again.
 - Go back to Unreal an create an "BP_EyeTracker" Blueprint from the C++ Actors.
 - In the Blueprint create the following variables and functions to enable Gaze-Raycasting
 
-## III.	Transform local gaze directions into global gaze directions:
+## III.	Transforming local gaze directions into global gaze directions:
 
 - Align EyeTracker Actor with Pawn/Player, such that head orientation and head location are the same
 
@@ -90,7 +90,7 @@ Forward vector would be f_=[1,0,0]
 
 *Pictures from:* [https://vr.tobii.com/sdk/media/learn/technical-information/world-tracking-space.png](https://vr.tobii.com/sdk/media/learn/technical-information/world-tracking-space.png) (left), [http://www.aclockworkberry.com/world-coordinate-systems-in-3ds-max-unity-and-unreal-engine/](http://www.aclockworkberry.com/world-coordinate-systems-in-3ds-max-unity-and-unreal-engine/) (right)
 
-## IV.	Project the global gaze vector into the environment by using the raycasting function: 
+## IV.	Projecting the global gaze vector into the environment using a ray casting function:
 
 - Use the previously defined Player Rotation (See III.)
 
@@ -104,7 +104,7 @@ Forward vector would be f_=[1,0,0]
 
 <img src="img/RayCasting.png" height="400"> 
 
-## V.	Collect gaze target information in the eye-tracking Actor and save in datafile: 
+## V.	Collecting gaze target information in the eye-tracking Actor and saving it in a data file:
 
 Save all raycasting information by writing the pre-defined variables from the c++ files (e.g. Set Ray Hit Actor)
 

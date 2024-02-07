@@ -109,13 +109,13 @@ def uniformity(graph_lst, name_lst):
     df = pd.DataFrame({'ID': ID_lst, 'ChiUniformity':chi_lst})
     return df
     
-def cut_size(graph_lst, name_lst):
+def cut_size(graph_lst, name_lst, stud_lst):
     cut_norm_lst = list()
     ID_lst = list()
 
     for graph in range(len(graph_lst)):
         G = graph_lst[graph]
-        s = split(data_lst[graph])
+        s = split(name_lst[graph])
         ID = s[0] + s[1] + s[2]
 
         # Devide nodes into students and teacher/screen
