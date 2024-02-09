@@ -1,6 +1,8 @@
+import glob
+
 import numpy as np
 import pandas as pd
-
+import os
 
 # Function to split a string into a list of letters
 def split(word):
@@ -20,14 +22,22 @@ def get_participant_id(name):
     return ID
 
 
-def create_transition_datasets(save_path, dataframes, data_lst, ooi_lst, save=True):
-    # Define a list of objects of interest (OOIs)
+def create_transition_datasets(dataframes, name_lst, filepath, savepath, ooi_lst, save=True, continue_processing=False):
 
     df_transition_lst = list()
+    filetag = "*.csv"
 
-    for file in range(len(dataframes)):
-        df = dataframes[file]
-        name = data_lst[file]
+    if dataframes is None:
+        os.chdir(filepath)
+        # Search for all csv files in one folder
+        name_lst = glob.glob(filetag)
+        print("Number of found files: ", len(name_lst))
+
+    for name in range(len(name_lst)):
+        if dataframes is None:
+            df = pd.read_csv(name_lst[name])
+        if dataframes is not None:
+            df = dataframes[name]
 
         # Remove all rows from the dataset that do not contain our OOIs
         bool_lst = df['gaze_target'].isin(ooi_lst)
@@ -58,20 +68,35 @@ def create_transition_datasets(save_path, dataframes, data_lst, ooi_lst, save=Tr
 
         df_trans = pd.DataFrame({'participant': ID_lst, 'time_point': time_lst, 'trans_dur': trans_time_lst,
                                  'Source': source_lst, 'Target': target_lst})
-        df_transition_lst.append(df_trans)
 
         if save:
-            df_trans.to_csv(save_path + ID + '.csv', index=False)
+            df_trans.to_csv(savepath + ID + '.csv', index=False)
 
-        return df_transition_lst
+        if continue_processing:
+            df_transition_lst.append(df_trans)
+
+    return df_transition_lst
 
 
-def build_adjacency_matrices_as_datasets(df_transition_lst, min_trans_dur=0, max_trans_dur=10,
-                                         min_weight=1, normalize=True):
+def build_adjacency_matrices_as_datasets(dataframes, name_lst, filepath, savepath, min_trans_dur=0, max_trans_dur=10,
+                                         min_weight=1, normalize=True, save=True, continue_processing=False):
+
     df_mat_lst = list()
+    filetag = "*.csv"
 
-    for file in range(len(df_transition_lst)):
-        df = df_transition_lst[file]
+    if dataframes is None:
+        os.chdir(filepath)
+        # Search for all csv files in one folder
+        name_lst = glob.glob(filetag)
+        print("Number of found files: ", len(name_lst))
+
+    for name in range(len(name_lst)):
+        if dataframes is None:
+            df = pd.read_csv(name_lst[name])
+        if dataframes is not None:
+            df = dataframes[name]
+
+        ID = get_participant_id(name)
 
         df = df[np.logical_and(df['time_dur'] >= min_trans_dur, df['time_dur'] <= max_trans_dur)]
 
@@ -84,6 +109,10 @@ def build_adjacency_matrices_as_datasets(df_transition_lst, min_trans_dur=0, max
             w_sum = np.sum(df_mat['Weight'].values)
             df_mat['Weight'] = df_mat['Weight'] / w_sum
 
+    if save:
+        df_mat.to_csv(savepath + ID + '.csv', index=False)
+
+    if continue_processing:
         df_mat_lst.append(df_mat)
 
     return df_mat_lst

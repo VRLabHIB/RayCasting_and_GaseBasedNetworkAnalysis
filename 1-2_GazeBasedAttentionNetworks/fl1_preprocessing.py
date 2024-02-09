@@ -5,25 +5,30 @@ import pandas as pd
 import os
 
 
-def load_and_preprocess_datasets(filepath, filetag, start_t, end_t):
+def load_and_preprocess_datasets(filepath, save_path, filetag, start_t, end_t, save=True, continue_processing=False):
     """
     Loads the dataset in a particular folder and preprocesses the data
 
     :param filepath: folder path where the data is located
-    :param start_t: float for the start time of the experiment
-    :param end_t: float for the end time of the experiment
+    :param start_t: float for the start time of the experiment in seconds
+    :param end_t: float for the end time of the experiment in seconds
     :param filetag: with the glob package we can scan the folder content and select files based on a filetag
     :return: list of filenames and a list of respective preprocessed datasets
     """
+    dataframes = list()
+    filetag = "*.csv"
     os.chdir(filepath)
 
+    # Search for all csv files in one folder
     name_lst = glob.glob(filetag)
     print("Number of found files: ", len(name_lst))
-    dataframes = [pd.read_csv(f, sep=',', header=0) for f in name_lst]  # create list with all data frames loaded
+
+    # If your have enough memory, you can load all dataframes into a list. Otherwise, just proceed sequentailly.
+    #dataframes = [pd.read_csv(f, sep=',', header=0) for f in name_lst]  # create list with all data frames loaded
 
     # Rename variables, determine start and end time, delete missing object rows
-    for file in range(len(dataframes)):
-        obj = dataframes[file]
+    for file in range(len(name_lst)):
+        obj = pd.read_csv(name_lst[file], sep=',', header=0)
 
         # Renaming of variable names
         obj = obj.rename(columns={'real_time': 'time'})  # We had to rename the time variable in our dataset
@@ -34,16 +39,13 @@ def load_and_preprocess_datasets(filepath, filetag, start_t, end_t):
 
         # Remove all rows with missings in the gaze_target variable
         cond = np.invert(obj['gaze_target'].isna())
-        final = obj[cond]
-        dataframes[file] = final
+        obj = obj[cond]
 
         ######
         # Additional prepocessing steps can be added here, e.g. checking for data quality or tracking ratio
         ######
 
     # Remove most unused variables to speed up the process and rename object variables
-    for file in range(len(dataframes)):
-        obj = dataframes[file]
         obj = obj.drop(['hmd.position.x', 'hmd.position.y', 'hmd.position.z',
                         'hmd.orientation.pitch', 'hmd.orientation.yaw', 'hmd.orientation.roll',
                         'gaze_x_interpol', 'gaze_y_interpol', 'gaze_z_interpol', 'gaze_speed', 'hmd_speed', 'label',
@@ -66,6 +68,13 @@ def load_and_preprocess_datasets(filepath, filetag, start_t, end_t):
                    'Screen_95': 'screen'}
         # Replace the gaze target names with the proper ones
         obj['object'] = obj['object'].replace(replace)
-        dataframes[file] = obj
+
+        # Save dataframes
+        if save:
+            obj.to_csv(save_path + file, index=False)
+
+        # If you don't want to continue processing the dataframes, it will just return an empty list
+        if continue_processing:
+            dataframes.append(obj)
 
     return name_lst, dataframes

@@ -4,6 +4,7 @@ import networkx as nx
 
 from scipy.stats import chisquare
 
+
 ### Helper functions
 def split(word):
     return [char for char in word]
@@ -13,6 +14,7 @@ def get_participant_id(name):
     s = split(name)
     ID = s[0] + s[1] + s[2]
     return ID
+
 
 ### Graph feature functions
 def degree_centrality_for_groups(graph_lst, name_lst, group_name, names_of_group_members):
@@ -81,12 +83,13 @@ def weighted_degree_centrality_for_uniformity(graph_lst, name_lst, node):
             for j in range(i + 1):
                 fj += weight_lst[j] / sumw
             FCi[i] = fj
-       
-        WDC = 1+ 2*(np.sum(FCi))
+
+        WDC = 1 + 2 * (np.sum(FCi))
         WDC_lst.append(WDC)
-        
-    df = pd.DataFrame({'ID':ID_lst, 'WDC':WDC_lst})
+
+    df = pd.DataFrame({'ID': ID_lst, 'WDC': WDC_lst})
     return df
+
 
 def uniformity(graph_lst, name_lst):
     ID_lst = list()
@@ -106,9 +109,10 @@ def uniformity(graph_lst, name_lst):
         ID_lst.append(ID)
         chi_lst.append(-chi)
 
-    df = pd.DataFrame({'ID': ID_lst, 'ChiUniformity':chi_lst})
+    df = pd.DataFrame({'ID': ID_lst, 'ChiUniformity': chi_lst})
     return df
-    
+
+
 def cut_size(graph_lst, name_lst, stud_lst):
     cut_norm_lst = list()
     ID_lst = list()
@@ -132,7 +136,8 @@ def cut_size(graph_lst, name_lst, stud_lst):
         cut_norm_lst.append(cut_norm)
 
     return None
-    
+
+
 def clique_features(graph_lst, name_lst, group_name, names_of_group_members,
                     number_of_cliques=True, avg_clique_size=True):
     ID_lst = list()
@@ -182,7 +187,6 @@ def clique_features(graph_lst, name_lst, group_name, names_of_group_members,
                     x = x.values()
                     n_cl_not += 1
 
-
         if len_cl_stud == 0:
             n_nodes_in_c_stud = 0
             avg_ratio_boys = 0
@@ -201,6 +205,7 @@ def clique_features(graph_lst, name_lst, group_name, names_of_group_members,
 
     return None
 
+
 if __name__ == '__main__':
-    #Load a graph and test
+    # Load a graph and test
     None
